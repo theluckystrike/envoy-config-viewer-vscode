@@ -1,0 +1,321 @@
+{
+  "name": "zovo-envoy-config-viewer",
+  "displayName": "Envoy Proxy Config Viewer",
+  "description": "Inspect envoy.yaml, envoy.yml, *.envoy.yaml and envoy-config.yaml files in VS Code: listeners, filter chains, HTTP route virtual hosts, clusters, endpoints, admin interface and static security findings, offline.",
+  "version": "0.1.0",
+  "publisher": "zovo",
+  "license": "MIT",
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#0F172A",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theluckystrike/envoy-config-viewer-vscode"
+  },
+  "bugs": {
+    "url": "https://github.com/theluckystrike/envoy-config-viewer-vscode/issues"
+  },
+  "homepage": "https://github.com/theluckystrike/envoy-config-viewer-vscode#readme",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other",
+    "Visualization"
+  ],
+  "keywords": [
+    "envoy",
+    "service-mesh",
+    "reverse-proxy",
+    "listeners",
+    "clusters",
+    "tls",
+    "devops",
+    "security",
+    "viewer"
+  ],
+  "main": "./src/extension.js",
+  "activationEvents": [
+    "onUri",
+    "onCustomEditor:zovo-envoy.viewer"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": true
+  },
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "zovo-envoy.viewer",
+        "displayName": "Envoy Proxy Config Viewer",
+        "selector": [
+          {
+            "filenamePattern": "envoy.yaml"
+          },
+          {
+            "filenamePattern": "envoy.yml"
+          },
+          {
+            "filenamePattern": "*.envoy.yaml"
+          },
+          {
+            "filenamePattern": "envoy-config.yaml"
+          }
+        ],
+        "priority": "default"
+      }
+    ],
+    "commands": [
+      {
+        "command": "zovoEnvoy.openWith",
+        "title": "Open in Envoy Proxy Config Viewer",
+        "category": "Envoy Proxy Config Viewer",
+        "icon": "$(server-environment)"
+      },
+      {
+        "command": "zovoEnvoy.openSample",
+        "title": "Open the Sample Envoy Config",
+        "category": "Envoy Proxy Config Viewer"
+      },
+      {
+        "command": "zovoEnvoy.openWalkthrough",
+        "title": "Get Started",
+        "category": "Envoy Proxy Config Viewer"
+      },
+      {
+        "command": "zovoEnvoy.moreViewers",
+        "title": "More free tools by Zovo",
+        "category": "Envoy Proxy Config Viewer"
+      },
+      {
+        "command": "zovoEnvoy.supportDeveloper",
+        "title": "Support the developer",
+        "category": "Envoy Proxy Config Viewer"
+      },
+      {
+        "command": "zovoEnvoy.auditEnvoy",
+        "title": "Audit Envoy security and resilience (Pro, 1 free try)",
+        "category": "Envoy Proxy Config Viewer"
+      },
+      {
+        "command": "zovoEnvoy.diffConfigs",
+        "title": "Compare two Envoy YAML configs (Pro, 1 free try)",
+        "category": "Envoy Proxy Config Viewer"
+      },
+      {
+        "command": "zovoEnvoy.exportClusterMap",
+        "title": "Export Mermaid cluster map and inventory (Pro, 1 free try)",
+        "category": "Envoy Proxy Config Viewer"
+      },
+      {
+        "command": "zovoEnvoy.zovoPro.auditEnvoy",
+        "title": "Zovo Pro: Audit Envoy security and resilience"
+      },
+      {
+        "command": "zovoEnvoy.zovoPro.diffConfigs",
+        "title": "Zovo Pro: Compare two Envoy YAML configs"
+      },
+      {
+        "command": "zovoEnvoy.zovoPro.exportClusterMap",
+        "title": "Zovo Pro: Export Mermaid cluster map and inventory"
+      },
+      {
+        "command": "zovoEnvoy.zovoTitle.auditEnvoy",
+        "title": "Zovo Pro: Audit Envoy security and resilience"
+      },
+      {
+        "command": "zovoEnvoy.zovoTitle.diffConfigs",
+        "title": "Zovo Pro: Compare two Envoy YAML configs"
+      },
+      {
+        "command": "zovoEnvoy.zovoTitle.exportClusterMap",
+        "title": "Zovo Pro: Export Mermaid cluster map and inventory"
+      },
+      {
+        "command": "zovoEnvoy.getPro",
+        "title": "Get Zovo Pro (USD 19 once, all Zovo extensions)",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "zovoEnvoy.payWithPayPal",
+        "title": "Pay for Zovo Pro with PayPal (USD 19, team of 5 USD 59)",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "zovoEnvoy.unlockWithSponsors",
+        "title": "I already paid: unlock with GitHub Sponsors",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "zovoEnvoy.enterLicenseKey",
+        "title": "Enter Zovo Pro license key",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "zovoEnvoy.removeLicense",
+        "title": "Remove Zovo Pro from this editor",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "zovoEnvoy.payByCard",
+        "title": "Pay for Zovo Pro by card (USD 19)",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "zovoEnvoy.enterKey",
+        "title": "Enter a key",
+        "category": "Zovo Pro"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "zovoEnvoy.zovoTitle.auditEnvoy",
+          "when": "activeCustomEditorId == 'zovo-envoy.viewer' && config.zovoEnvoy.showProTools",
+          "group": "zovoPro@1"
+        },
+        {
+          "command": "zovoEnvoy.zovoTitle.diffConfigs",
+          "when": "activeCustomEditorId == 'zovo-envoy.viewer' && config.zovoEnvoy.showProTools",
+          "group": "zovoPro@2"
+        },
+        {
+          "command": "zovoEnvoy.zovoTitle.exportClusterMap",
+          "when": "activeCustomEditorId == 'zovo-envoy.viewer' && config.zovoEnvoy.showProTools",
+          "group": "zovoPro@3"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "zovoEnvoy.openWith",
+          "when": "resourceFilename =~ /^(envoy\\.(yaml|yml)|.*\\.envoy\\.yaml|envoy-config\\.yaml)$/i && !explorerResourceIsFolder",
+          "group": "navigation@9"
+        },
+        {
+          "command": "zovoEnvoy.zovoPro.auditEnvoy",
+          "when": "resourceFilename =~ /^(envoy\\.(yaml|yml)|.*\\.envoy\\.yaml|envoy-config\\.yaml)$/i && !explorerResourceIsFolder && config.zovoEnvoy.showProTools",
+          "group": "zovoPro@1"
+        },
+        {
+          "command": "zovoEnvoy.zovoPro.diffConfigs",
+          "when": "resourceFilename =~ /^(envoy\\.(yaml|yml)|.*\\.envoy\\.yaml|envoy-config\\.yaml)$/i && !explorerResourceIsFolder && config.zovoEnvoy.showProTools",
+          "group": "zovoPro@2"
+        },
+        {
+          "command": "zovoEnvoy.zovoPro.exportClusterMap",
+          "when": "resourceFilename =~ /^(envoy\\.(yaml|yml)|.*\\.envoy\\.yaml|envoy-config\\.yaml)$/i && !explorerResourceIsFolder && config.zovoEnvoy.showProTools",
+          "group": "zovoPro@3"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "zovoEnvoy.auditEnvoy",
+          "when": "config.zovoEnvoy.showProTools"
+        },
+        {
+          "command": "zovoEnvoy.diffConfigs",
+          "when": "config.zovoEnvoy.showProTools"
+        },
+        {
+          "command": "zovoEnvoy.exportClusterMap",
+          "when": "config.zovoEnvoy.showProTools"
+        },
+        {
+          "command": "zovoEnvoy.zovoPro.auditEnvoy",
+          "when": "false"
+        },
+        {
+          "command": "zovoEnvoy.zovoPro.diffConfigs",
+          "when": "false"
+        },
+        {
+          "command": "zovoEnvoy.zovoPro.exportClusterMap",
+          "when": "false"
+        },
+        {
+          "command": "zovoEnvoy.zovoTitle.auditEnvoy",
+          "when": "false"
+        },
+        {
+          "command": "zovoEnvoy.zovoTitle.diffConfigs",
+          "when": "false"
+        },
+        {
+          "command": "zovoEnvoy.zovoTitle.exportClusterMap",
+          "when": "false"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Envoy Proxy Config Viewer",
+      "properties": {
+        "zovoEnvoy.maxFileMB": {
+          "type": "number",
+          "default": 16,
+          "minimum": 1,
+          "maximum": 128,
+          "description": "Files up to this size open in Envoy Proxy Config Viewer."
+        },
+        "zovoEnvoy.pageSize": {
+          "type": "number",
+          "default": 100,
+          "minimum": 20,
+          "maximum": 500,
+          "description": "Envoy config entries shown on one page."
+        },
+        "zovoEnvoy.showProTools": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the Zovo Pro tools (Envoy security audit, config diff and cluster map export) in the Command Palette, the Explorer menu, the editor title menu and the viewer toolbar. Everything free stays visible."
+        },
+        "zovoEnvoy.askForRating": {
+          "type": "boolean",
+          "default": true,
+          "description": "Ask once for a store rating after 3 Envoy config files open without an error across 2 days. Choosing No thanks never asks again. Nothing is sent anywhere."
+        },
+        "zovoEnvoy.showSupportLinks": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the small Rate, More free tools and Zovo Pro links at the bottom of the viewer. Nothing is sent anywhere."
+        },
+        "zovo.envyview.trial.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the 7-day Zovo Pro trial button in the Pro panel."
+        }
+      }
+    },
+    "walkthroughs": [
+      {
+        "id": "zovoEnvoy.start",
+        "title": "Get started with Envoy Proxy Config Viewer",
+        "description": "Inspect envoy.yaml, envoy.yml, *.envoy.yaml and envoy-config.yaml files in VS Code: listeners, filter chains, HTTP route virtual hosts, clusters, endpoints, admin interface and static security findings, offline.",
+        "steps": [
+          {
+            "id": "open",
+            "title": "Open an Envoy config file",
+            "description": "Click any envoy.yaml, envoy.yml, *.envoy.yaml or envoy-config.yaml file in the Explorer, or run Open in Envoy Proxy Config Viewer.\n[Open the sample Envoy config](command:zovoEnvoy.openSample)",
+            "media": {
+              "image": "images/screenshot.png",
+              "altText": "An envoy.yaml file open in the viewer showing listeners, filter chains, HTTP virtual hosts, clusters, endpoints, admin settings and static security findings."
+            },
+            "completionEvents": [
+              "onCommand:zovoEnvoy.openSample"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "test": "node scripts/test.js",
+    "package": "npx -y @vscode/vsce@3 package --no-dependencies"
+  },
+  "sponsor": {
+    "url": "https://github.com/sponsors/theluckystrike/sponsorships?tier_id=679878"
+  }
+}
